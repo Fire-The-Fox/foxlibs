@@ -1,0 +1,21 @@
+config FOXSTRING
+	bool "FoxString"
+	help
+	  Make working with string much easier
+
+config FOXOBJECTS
+	bool "FoxObjects"
+	help
+	  Implementation of somewhat OOP feel
+
+config FOXBOX
+	bool "FoxBox"
+	help
+	  Array implementation that doesn't care about datatypes
+
+config FOXCONFIG
+	bool "FoxConfig"
+	help
+	  FoxConfig is a library that parses .foxconfig files and binds them to your variables/structs
+
+
