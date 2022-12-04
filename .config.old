@@ -1,8 +1,0 @@
-#
-# Automatically generated file; DO NOT EDIT.
-# Configuration
-#
-CONFIG_FOXSTRING=y
-# CONFIG_FOXOBJECTS is not set
-# CONFIG_FOXBOX is not set
-CONFIG_FOXCONFIG=y
