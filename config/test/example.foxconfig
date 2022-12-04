@@ -1,0 +1,14 @@
+include "import.foxconfig"
+
+# I am valid comment
+
+config {
+    val = 10
+    name = "Hello xHyroM"
+    bul = true
+    numbers = [9, 1, 0, 9, 1052]
+}
+
+config.bools = [true, false, true, false, false]
+
+config.bloatware = "I am a bloatware and not needed config"

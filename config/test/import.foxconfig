@@ -1,0 +1,9 @@
+include "example.foxconfig";
+
+config.nest {
+    name = "Hello, i am nested"
+}
+
+config {
+    fav_vtubers = ["Shirakami Fubuki", "Ookami Mio", "Gura"]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "foxconfig",
+    "displayName": "FoxConfig",
+    "description": "FoxConfig is a simple configuration library for C",
+    "version": "0.0.1",
+    "publisher": "Fire-The-Fox",
+    "engines": {
+      "vscode": "^1.72.0"
+    },
+    "categories": [
+      "Programming Languages"
+    ],
+    "contributes": {
+      "languages": [{
+        "id": "foxconfig",
+        "aliases": ["FoxConfig", "foxconfig"],
+        "extensions": [".foxconfig"],
+        "configuration": "./language-configuration.json"
+      }],
+      "grammars": [{
+        "language": "foxconfig",
+        "scopeName": "source.foxconfig",
+        "path": "./syntax/foxconfig.tmLanguage.json"
+      }]
+    }
+  }
