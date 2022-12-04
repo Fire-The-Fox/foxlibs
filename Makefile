@@ -15,6 +15,13 @@ ifeq ($(CONFIG_FOXSTRING), y)
 
 	LIB_BUNDLE += ./string/libfoxstring.a
 	HEADERS += ./string/foxstring.h
+
+endif
+ifeq ($(CONFIG_FOXOBJECTS), y)
+
+	LIB_BUNDLE += ./objects/libfoxobjects.a
+	HEADERS += ./objects/foxobjects.h
+
 endif
 
 defconfig:
@@ -38,6 +45,9 @@ endif
 ifeq ($(CONFIG_FOXSTRING), y)
 	$(MAKE) -C string all
 endif
+ifeq ($(CONFIG_FOXOBJECTS), y)
+	$(MAKE) -C objects all
+endif
 	ar rcs ./libfoxlibs.a $(LIB_BUNDLE)
 	cat $(HEADERS) > libfoxlibs.h
 
@@ -47,6 +57,9 @@ ifeq ($(CONFIG_FOXCONFIG), y)
 endif
 ifeq ($(CONFIG_FOXSTRING), y)
 	$(MAKE) -C string clean
+endif
+ifeq ($(CONFIG_FOXOBJECTS), y)
+	$(MAKE) -C objects clean
 endif
 	rm ./libfoxlibs.a
 	rm libfoxlibs.h

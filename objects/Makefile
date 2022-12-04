@@ -5,7 +5,7 @@ CFLAGS = -Wall -g -O2
 
 all:
 	$(MAKE) -C src all
-	gcc test.c -o test_main -L. -lfoxstring
+	gcc test.c -o test_main -L. -lfoxobjects
 	@echo "To test run './test_main'"
 
 clean:
