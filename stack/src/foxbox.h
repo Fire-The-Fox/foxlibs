@@ -31,8 +31,8 @@ void *FoxBox_PopFast(FoxBox *box, int size);
 
 int FoxBox_Fill(FoxBox *box, int count, void *item);
 
-int FoxBox_Erase(FoxBox *box, int index);
-int FoxBox_EraseFast(FoxBox *box, int index, int size);
+void *FoxBox_Erase(FoxBox *box, int index);
+void *FoxBox_EraseFast(FoxBox *box, int index, int size);
 
 int FoxBox_Insert(FoxBox *box, int index, void *value);
 int FoxBox_InsertFast(FoxBox *box, int index, void *value, int size);

@@ -91,31 +91,25 @@ int FoxBox_Fill(FoxBox *box, int count, void *item) {
     return 0;
 }
 
-int FoxBox_Erase(FoxBox *box, int index) {
+void *FoxBox_Erase(FoxBox *box, int index) {
     unsigned long size = FoxBox_Size(*box);
+    void *item = (*box)[index];
     for (int i = index; i < size; i++) {
         (*box)[i] = (*box)[i + 1];
     }
 
     *box = realloc(*box, (size + 1) * sizeof(FoxBox));
-    if (*box == NULL) return 1;
-    else {
-        *(*box+size) = NULL;
-        return 0;
-    }
+    return item;
 }
 
-int FoxBox_EraseFast(FoxBox *box, int index, int size) {
+void *FoxBox_EraseFast(FoxBox *box, int index, int size) {
+    void *item = (*box)[index];
     for (int i = index; i < size; i++) {
         (*box)[i] = (*box)[i + 1];
     }
 
     *box = realloc(*box, (size + 1) * sizeof(FoxBox));
-    if (*box == NULL) return 1;
-    else {
-        *(*box + size) = NULL;
-        return 0;
-    }
+    return item;
 }
 
 int FoxBox_Insert(FoxBox *box, int index, void *value) {
