@@ -16,6 +16,8 @@
 
 include .config
 
+export CONFIG_FOXQUEUE_NORMAL
+
 LIB_BUNDLE = 
 HEADERS = 
 

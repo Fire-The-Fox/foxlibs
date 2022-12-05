@@ -16,16 +16,23 @@
 
 CC ?= gcc
 CFLAGS ?= -Wall -g -O2 -L../../box/ -lfoxbox
-OBJ =
+OBJ = foxqueue.o
 
 CONFIG_FOXQUEUE_NORMAL ?= n
 CONFIG_FOXQUEUE_CIRCULAR ?= n
 CONFIG_FOXQUEUE_DEQUE ?= n
 
 ifeq ($(CONFIG_FOXQUEUE_NORMAL), y)
-OBJ += foxqueue.o
+CFLAGS += -DFOXQUEUE_NORMAL
 endif
 
+ifeq ($(CONFIG_FOXQUEUE_NORMAL), y)
+CFLAGS += -DFOXQUEUE_CIRCULAR
+endif
+
+ifeq ($(CONFIG_FOXQUEUE_NORMAL), y)
+CFLAGS += -DFOXQUEUE_DEQUE
+endif
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -38,4 +38,24 @@ short FoxQueue_Empty(FoxQueue queue);
 void FoxQueue_Swap(FoxQueue *main, FoxQueue *side);
 void FoxQueue_Free(FoxQueue *queue);
 
+typedef struct {
+    int start;
+    int end;
+    int size;
+    short halted;
+    FoxBox mem;
+} FoxCircularQueue;
+
+FoxCircularQueue FoxCircularQueue_New();
+
+int FoxCircularQueue_Enqueue(FoxCircularQueue *queue, void *item);
+void *FoxCircularQueue_Dequeue(FoxCircularQueue *queue);
+void *FoxCircularQueue_Start(FoxCircularQueue queue);
+void *FoxCircularQueue_End(FoxCircularQueue queue);
+short FoxCircularQueue_Empty(FoxCircularQueue queue);
+short FoxCircularQueue_Full(FoxCircularQueue queue);
+void FoxCircularQueue_Halt(FoxCircularQueue *queue);
+void FoxCircularQueue_Swap(FoxCircularQueue *main, FoxCircularQueue *side);
+void FoxCircularQueue_Free(FoxCircularQueue *queue);
+
 #endif

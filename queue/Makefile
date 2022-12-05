@@ -17,6 +17,8 @@
 CC ?= gcc
 CFLAGS ?= -Wall -g -O2
 
+export CONFIG_FOXQUEUE_NORMAL
+
 .DEFAULT_GOAL = all
 
 all:
