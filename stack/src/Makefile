@@ -15,15 +15,16 @@
 # along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
 CC ?= gcc
-CFLAGS ?= -Wall -g -O2 -Wno-format
+CFLAGS ?= -Wall -g -O2 -L../../box/ -lfoxbox
+OBJ = foxstack.o
 
-.DEFAULT_GOAL = all
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-all:
-	$(MAKE) -C src all
-	gcc test.c $(CFLAGS) -o test_main -L. -lfoxobjects
-	@echo "To test run './test_main'"
+all: $(OBJ)
+	ar -x ../../box/libfoxbox.a
+	ar rcs ../libfoxstack.a $(OBJ) foxbox.o
 
 clean:
-	$(MAKE) -C src clean
-	rm -f test_main
+	rm -f *.o
+	rm -f ../libfoxstack.a

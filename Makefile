@@ -23,26 +23,32 @@ HEADERS =
 
 ifeq ($(CONFIG_FOXCONFIG), y)
 
-	LIB_BUNDLE += ./config/libfoxconfig.a
+	LIB_BUNDLE += ../config/libfoxconfig.a
 	HEADERS += ./config/foxconfig.h
 
 endif
 ifeq ($(CONFIG_FOXSTRING), y)
 
-	LIB_BUNDLE += ./string/libfoxstring.a
+	LIB_BUNDLE += ../string/libfoxstring.a
 	HEADERS += ./string/foxstring.h
 
 endif
 ifeq ($(CONFIG_FOXOBJECTS), y)
 
-	LIB_BUNDLE += ./objects/libfoxobjects.a
+	LIB_BUNDLE += ../objects/libfoxobjects.a
 	HEADERS += ./objects/foxobjects.h
 
 endif
 ifeq ($(CONFIG_FOXBOX), y)
 
-	LIB_BUNDLE += ./box/libfoxbox.a
+	LIB_BUNDLE += ../box/libfoxbox.a
 	HEADERS += ./box/foxbox.h
+
+endif
+ifeq ($(CONFIG_FOXSTACK), y)
+
+	LIB_BUNDLE += ../stack/libfoxstack.a
+	HEADERS += ./stack/foxstack.h
 
 endif
 
@@ -73,9 +79,15 @@ endif
 ifeq ($(CONFIG_FOXBOX), y)
 	$(MAKE) -C box all
 endif
+ifeq ($(CONFIG_FOXSTACK), y)
+	$(MAKE) -C stack all
+endif
 
-	ar rcs ./libfoxlibs.a $(LIB_BUNDLE)
-	cat $(HEADERS) > libfoxlibs.h
+	mkdir -p extracted
+	$(foreach lib, $(LIB_BUNDLE), cd extracted && ar x $(lib); cd ..;)
+	ar rcs libfoxlibs.a extracted/*
+	rm -rf extracted
+	@cat $(HEADERS) > foxlibs.h | sed -i '/#include/d' foxlibs.h
 
 clean:
 ifeq ($(CONFIG_FOXCONFIG), y)
@@ -90,6 +102,9 @@ endif
 ifeq ($(CONFIG_FOXBOX), y)
 	$(MAKE) -C box clean
 endif
+ifeq ($(CONFIG_FOXSTACK), y)
+	$(MAKE) -C stack clean
+endif
 
 	rm ./libfoxlibs.a
-	rm libfoxlibs.h
+	rm foxlibs.h
