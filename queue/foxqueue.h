@@ -16,24 +16,26 @@ You should have received a copy of the GNU Lesser General Public License
 along with this library.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef FOXSTACK_H
-#define FOXSTACK_H
+#ifndef FOXQUEUE_H
+#define FOXQUEUE_H
 
 #include "foxbox.h"
 
 typedef struct {
-    int top;
+    int start;
+    int end;
     int size;
     FoxBox mem;
-} FoxStack;
+} FoxQueue;
 
-FoxStack FoxStack_New();
+FoxQueue FoxQueue_New();
 
-int FoxStack_Push(FoxStack *stack, void* item);
-void* FoxStack_Pop(FoxStack *stack);
-void* FoxStack_Top(FoxStack stack);
-short FoxStack_Empty(FoxStack stack);
-void FoxStack_Swap(FoxStack *main, FoxStack *side);
-void FoxStack_Free(FoxStack *stack);
+int FoxQueue_Enqueue(FoxQueue *queue, void *item);
+void *FoxQueue_Dequeue(FoxQueue *queue);
+void *FoxQueue_Start(FoxQueue queue);
+void *FoxQueue_End(FoxQueue queue);
+short FoxQueue_Empty(FoxQueue queue);
+void FoxQueue_Swap(FoxQueue *main, FoxQueue *side);
+void FoxQueue_Free(FoxQueue *queue);
 
 #endif

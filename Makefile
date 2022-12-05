@@ -52,6 +52,15 @@ ifeq ($(CONFIG_FOXSTACK), y)
 
 endif
 
+ifeq ($(CONFIG_FOXQUEUES), y)
+
+export CONFIG_FOXQUEUE_NORMAL
+
+	LIB_BUNDLE += ../queue/libfoxqueue.a
+	HEADERS += ./queue/foxqueue.h
+
+endif
+
 defconfig:
 	@cd kconfig-frontends && ./bootstrap
 	@cd kconfig-frontends && ./configure --disable-{nconf,gconf,qconf,conf}
@@ -82,6 +91,9 @@ endif
 ifeq ($(CONFIG_FOXSTACK), y)
 	$(MAKE) -C stack all
 endif
+ifeq ($(CONFIG_FOXQUEUES), y)
+	$(MAKE) -C queue all
+endif
 
 	mkdir -p extracted
 	$(foreach lib, $(LIB_BUNDLE), cd extracted && ar x $(lib); cd ..;)
@@ -103,6 +115,9 @@ ifeq ($(CONFIG_FOXBOX), y)
 	$(MAKE) -C box clean
 endif
 ifeq ($(CONFIG_FOXSTACK), y)
+	$(MAKE) -C stack clean
+endif
+ifeq ($(CONFIG_FOXQUEUES), y)
 	$(MAKE) -C stack clean
 endif
 

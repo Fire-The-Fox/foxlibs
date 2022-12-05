@@ -53,3 +53,7 @@ void FoxStack_Swap(FoxStack *main, FoxStack *side) {
     *main = *side;
     *side = temp;
 }
+
+void FoxStack_Free(FoxStack *stack) {
+    FoxBox_Free(stack->mem);
+}

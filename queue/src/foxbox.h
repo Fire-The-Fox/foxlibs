@@ -16,24 +16,31 @@ You should have received a copy of the GNU Lesser General Public License
 along with this library.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef FOXSTACK_H
-#define FOXSTACK_H
+#ifndef FOXBOX_H
+#define FOXBOX_H
 
-#include "foxbox.h"
+typedef void **FoxBox;
 
-typedef struct {
-    int top;
-    int size;
-    FoxBox mem;
-} FoxStack;
+FoxBox FoxBox_New();
 
-FoxStack FoxStack_New();
+int FoxBox_Push(FoxBox *box, void *item);
+int FoxBox_PushFast(FoxBox *box, void *item, int size);
 
-int FoxStack_Push(FoxStack *stack, void* item);
-void* FoxStack_Pop(FoxStack *stack);
-void* FoxStack_Top(FoxStack stack);
-short FoxStack_Empty(FoxStack stack);
-void FoxStack_Swap(FoxStack *main, FoxStack *side);
-void FoxStack_Free(FoxStack *stack);
+void *FoxBox_Pop(FoxBox *box);
+void *FoxBox_PopFast(FoxBox *box, int size);
+
+int FoxBox_Fill(FoxBox *box, int count, void *item);
+
+void *FoxBox_Erase(FoxBox *box, int index);
+void *FoxBox_EraseFast(FoxBox *box, int index, int size);
+
+int FoxBox_Insert(FoxBox *box, int index, void *value);
+int FoxBox_InsertFast(FoxBox *box, int index, void *value, int size);
+
+void FoxBox_Swap(FoxBox *main, FoxBox *side);
+int FoxBox_Clear(FoxBox *box);
+
+unsigned int FoxBox_Size(FoxBox box);
+void FoxBox_Free(FoxBox box);
 
 #endif

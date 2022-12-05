@@ -34,5 +34,6 @@ void* FoxStack_Pop(FoxStack *stack);
 void* FoxStack_Top(FoxStack stack);
 short FoxStack_Empty(FoxStack stack);
 void FoxStack_Swap(FoxStack *main, FoxStack *side);
+void FoxStack_Free(FoxStack *stack);
 
 #endif

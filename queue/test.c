@@ -17,31 +17,35 @@ along with this library.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdio.h>
-
-#include "foxstack.h"
+#include "foxqueue.h"
 
 int main() {
-    FoxStack stack = FoxStack_New();
-    int arr[] = {8, 1, 9};
+    FoxQueue queue = FoxQueue_New();
+    int arr[] = {1, 2, 3, 4, 5};
     int *ptr = arr;
-    FoxStack_Push(&stack, ptr);
+    FoxQueue_Enqueue(&queue, ptr);
     ptr++;
-    FoxStack_Push(&stack, ptr);
+    FoxQueue_Enqueue(&queue, ptr);
     ptr++;
-    FoxStack_Push(&stack, ptr);
+    FoxQueue_Enqueue(&queue, ptr);
+    ptr++;
+    FoxQueue_Enqueue(&queue, ptr);
+    ptr++;
+    FoxQueue_Enqueue(&queue, ptr);
 
-    printf("%d\n", *(int*) FoxStack_Top(stack));
-    printf("%d\n", *(int*) FoxStack_Pop(&stack));
-    printf("%d\n", *(int*) FoxStack_Top(stack));
+    void *removed = FoxQueue_Dequeue(&queue);
 
-    ptr--;
-    ptr--;
+    for (int i = queue.start; i < queue.end + 1; i++) {
+        printf("%d\n", *(int*) queue.mem[i]);
+        FoxQueue_Dequeue(&queue);
+    }
 
-    FoxStack_Push(&stack, ptr);
+    printf("%d was removed\n", *(int*) removed);
 
-    printf("%d\n", *(int*) FoxStack_Pop(&stack));
+    printf("Start: %d\nEnd: %d\nSize: %d\n", queue.start, queue.end, queue.size);
+    printf("Why? FoxQueue is empty!\n");
+    printf("Is FoxQueue empty? %s\n", FoxQueue_Empty(queue) ? "Yes" : "No");
 
-    FoxStack_Free(&stack);
-
+    FoxQueue_Free(&queue);
     return 0;
 }
