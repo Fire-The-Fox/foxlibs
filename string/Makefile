@@ -14,14 +14,14 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
-CC = gcc
-CFLAGS = -Wall -g -O2
+CC ?= gcc
+CFLAGS ?= -Wall -g -O2
 
 .DEFAULT_GOAL = all
 
 all:
 	$(MAKE) -C src all
-	gcc test.c -o test_main -L. -lfoxstring
+	gcc test.c $(CFLAGS) -o test_main -L. -lfoxstring
 	@echo "To test run './test_main'"
 
 clean:

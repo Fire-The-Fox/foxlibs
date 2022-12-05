@@ -16,14 +16,14 @@
 
 CC ?= gcc
 CFLAGS ?= -Wall -g -O2
-OBJ = foxstring.o
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+.DEFAULT_GOAL = all
 
-all: $(OBJ)
-	ar rcs ../libfoxstring.a $(OBJ)
+all:
+	$(MAKE) -C src all
+	gcc test.c -o test_main $(CFLAGS) -L. -lfoxbox
+	@echo "To test run './test_main'"
 
 clean:
-	rm -f *.o
-	rm -f ../libfoxstring.a
+	$(MAKE) -C src clean
+	rm -f test_main

@@ -16,14 +16,14 @@
 
 CC ?= gcc
 CFLAGS ?= -Wall -g -O2
-OBJ = foxstring.o
+OBJ = foxbox.o
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(OBJ)
-	ar rcs ../libfoxstring.a $(OBJ)
+	ar rcs ../libfoxbox.a $(OBJ)
 
 clean:
 	rm -f *.o
-	rm -f ../libfoxstring.a
+	rm -f ../libfoxbox.a

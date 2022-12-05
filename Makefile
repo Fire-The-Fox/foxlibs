@@ -39,6 +39,12 @@ ifeq ($(CONFIG_FOXOBJECTS), y)
 	HEADERS += ./objects/foxobjects.h
 
 endif
+ifeq ($(CONFIG_FOXBOX), y)
+
+	LIB_BUNDLE += ./box/libfoxbox.a
+	HEADERS += ./box/foxbox.h
+
+endif
 
 defconfig:
 	@cd kconfig-frontends && ./bootstrap
@@ -46,7 +52,7 @@ defconfig:
 	$(MAKE) kconfig-frontends
 
 menuconfig:
-	./kconfig-frontends/frontends/mconf/mconf Kconfig
+	./kconfig-frontends/frontends/mconf/mconf KConfig
 
 help:
 	@echo "'make defconfig' to create configuration"
@@ -64,6 +70,10 @@ endif
 ifeq ($(CONFIG_FOXOBJECTS), y)
 	$(MAKE) -C objects all
 endif
+ifeq ($(CONFIG_FOXBOX), y)
+	$(MAKE) -C box all
+endif
+
 	ar rcs ./libfoxlibs.a $(LIB_BUNDLE)
 	cat $(HEADERS) > libfoxlibs.h
 
@@ -77,5 +87,9 @@ endif
 ifeq ($(CONFIG_FOXOBJECTS), y)
 	$(MAKE) -C objects clean
 endif
+ifeq ($(CONFIG_FOXBOX), y)
+	$(MAKE) -C box clean
+endif
+
 	rm ./libfoxlibs.a
 	rm libfoxlibs.h

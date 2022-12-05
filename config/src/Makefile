@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
-CC = gcc
-CFLAGS = -Wall -g -O2
+CC ?= gcc
+CFLAGS ?= -Wall -g -O2
 OBJ = array.o dict.o parser.o
 
 %.o: %.c

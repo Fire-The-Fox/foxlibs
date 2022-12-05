@@ -1,0 +1,53 @@
+config FOXSTRING
+	bool "FoxString"
+	help
+	  Make working with string much easier
+
+config FOXOBJECTS
+	bool "FoxObjects"
+	help
+	  Implementation of somewhat OOP feel
+
+config FOXBOX
+	bool "FoxBox"
+	help
+	  Array implementation that doesn't care about datatypes
+
+config FOXCONFIG
+	bool "FoxConfig"
+	help
+	  FoxConfig is a library that parses .foxconfig files and binds them to your variables/structs
+
+config FOXSTACK
+    bool "FoxStack"
+    select FOXBOX
+    help
+      Implementation of Stack data structure
+
+menuconfig FOXQUEUES
+    bool "FoxQueues"
+    select FOXBOX
+    help
+      Selection menu for FoxQueues
+
+if FOXQUEUES
+
+config FOXQUEUE_NORMAL
+    bool "FoxQueue"
+    select FOXBOX
+    help
+      Implementation of standard Queue data structure
+
+config FOXQUEUE_CIRCULAR
+    bool "FoxCircularQueue"
+    select FOXBOX
+    help
+      Implementation of Circular Queue data structure
+
+config FOXQUEUE_DEQUE
+    bool "FoxDeque"
+    select FOXBOX
+    help
+      Implementation of Deque data structure
+
+endif
